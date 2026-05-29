@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/10;
+  }
+}
+
+/* Custom scrollbar for lyrics and main area */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  @apply bg-spotifyBlack text-white overflow-hidden;
+}
+
+::selection {
+  background-color: #22d3ee;
+  color: white;
+}
+
+/* Static Black Background for Main Player */
+.bg-pure-black {
+  background-color: #000000;
+}
+
+/* Logo Aura / Glow effect */
+.logo-glow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-glow::before {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, transparent 70%);
+  z-index: -1;
+  filter: blur(10px);
+}
+
+/* Scrolling Text Container with Side Fades */
+.side-fade {
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.mask-fade-y {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+@keyframes scrollText {
+  0%, 15% { transform: translateX(0); } /* 3s pause at 20s total duration */
+  85%, 100% { transform: translateX(-100%); }
+}
+
+.animate-scroll {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollText 20s linear infinite; /* Unidirectional, slow */
+}
